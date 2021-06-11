@@ -1,11 +1,18 @@
 const express = require('express')
 const UserController = require('./controllers/UserController')
+const AnalystsController = require('./controllers/AnalystsController')
 
 const routes = express.Router()
 
-routes.get('/users', UserController.index)
-routes.post('/users', UserController.create)
-routes.put('/users/:id', UserController.update)
-routes.delete('/users/:id', UserController.delete)
+routes
+	.get('/users', UserController.index)
+	.post('/users', UserController.create)
+	.put('/users/:id', UserController.update)
+	.delete('/users/:id', UserController.delete)
+	//Users
+
+routes
+	.get('/analysts', AnalystsController.index)
+	//Analysts
 
 module.exports = routes
