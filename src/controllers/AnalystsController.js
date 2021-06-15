@@ -14,7 +14,12 @@ module.exports = {
 				query
 					.where({ user_id })
 					.join('users', 'users.id', '=', 'analysts.user_id')
-					.select('analysts.*', 'users.name', 'users.document')
+					.select(
+						'analysts.*',
+						'users.name',
+						'users.document',
+						'users.deleted_at'
+					)
 
 				countObject
 					.where({ user_id })
