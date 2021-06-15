@@ -9,6 +9,7 @@ module.exports = {
 			res.header('X-Total-Count', count['count'])
 
 			const result = await knex('users')
+				.where('deleted_at', null)
 				.limit(5)
 				.offset((page - 1) * 5)
 
@@ -65,9 +66,10 @@ module.exports = {
 
 			await knex('users')
 				.where({ id })
-				.del()
+				.update('deleted_at', new Date())
+				//.del()
 
-				return res.send()
+			return res.send()
 		} catch (error) {
 			next(error)
 		}
