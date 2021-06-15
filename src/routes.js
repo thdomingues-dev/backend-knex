@@ -13,6 +13,7 @@ routes
 
 routes
 	.get('/analysts', AnalystsController.index)
+	.post('/analysts', AnalystsController.create)
 	//Analysts
 
 module.exports = routes
