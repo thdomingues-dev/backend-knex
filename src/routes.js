@@ -2,6 +2,7 @@ const express = require('express')
 const UserController = require('./controllers/UserController')
 const AnalystsController = require('./controllers/AnalystsController')
 const AuditsController = require('./controllers/AuditsController')
+const CardsController = require('./controllers/CardsController')
 
 const routes = express.Router()
 
@@ -20,5 +21,8 @@ routes
 routes
 	.get('/audits', AuditsController.index)
 	//Audits
+
+routes
+	.get('/cards', CardsController.index)
 
 module.exports = routes
