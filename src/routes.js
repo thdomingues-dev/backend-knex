@@ -24,5 +24,6 @@ routes
 
 routes
 	.get('/cards', CardsController.index)
-
+	.post('/cards', CardsController.create)
+	.put('/cards/:id', CardsController.update)
 module.exports = routes
