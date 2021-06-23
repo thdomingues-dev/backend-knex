@@ -3,7 +3,8 @@ const knex = require("../database")
 module.exports = {
 	async index (req, res, next) {
 		try {
-			const { user_id, page = 1 } = req.query
+			const { user_id, email, page = 1 } = req.query
+
 			const query = knex('analysts')
 				.limit(5)
 				.offset((page - 1) * 5)
@@ -23,6 +24,19 @@ module.exports = {
 
 				countObject
 					.where({ user_id })
+			}
+
+			if (email || email === '') {
+				query
+					.where({ 'analysts.email': email })
+					.join('users', 'analysts.user_id', 'users.id')
+					.select(
+						'analysts.*',
+						'users.*',
+					)
+
+				countObject
+					.where({ email })
 			}
 
 			const [count] = await countObject

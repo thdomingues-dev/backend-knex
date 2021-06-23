@@ -7,23 +7,24 @@ const CardsController = require('./controllers/CardsController')
 const routes = express.Router()
 
 routes
-	.get('/users', UserController.index)
-	.post('/users', UserController.create)
-	.put('/users/:id', UserController.update)
-	.delete('/users/:id', UserController.delete)
+	.get('/api/users', UserController.index)
+	.post('/api/users', UserController.create)
+	.put('/api/users/:id', UserController.update)
+	.delete('/api/users/:id', UserController.delete)
 	//Users
 
 routes
-	.get('/analysts', AnalystsController.index)
-	.post('/analysts', AnalystsController.create)
+	.get('/api/analysts', AnalystsController.index)
+	.post('/api/analysts', AnalystsController.create)
 	//Analysts
 
 routes
-	.get('/audits', AuditsController.index)
+	.get('/api/audits', AuditsController.index)
 	//Audits
 
 routes
-	.get('/cards', CardsController.index)
-	.post('/cards', CardsController.create)
-	.put('/cards/:id', CardsController.update)
+	.get('/api/cards', CardsController.index)
+	.post('/api/cards', CardsController.create)
+	.put('/api/cards/:id', CardsController.update)
+	//Cards
 module.exports = routes

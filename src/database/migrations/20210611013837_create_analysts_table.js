@@ -7,7 +7,11 @@ exports.up = async knex => knex.schema.createTable('analysts', table => {
 		.unique()
 		.notNullable()
 		.onDelete('CASCADE')
-	table.text('email').unique().notNullable()
+	table.text('email')
+		.references('users.email')
+		.unique()
+		.notNullable()
+		.onDelete('CASCADE')
 	table.text('password').notNullable()
 	table.specificType('roles', 'text ARRAY').notNullable()
 

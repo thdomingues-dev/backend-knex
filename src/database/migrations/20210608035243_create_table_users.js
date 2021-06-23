@@ -5,9 +5,10 @@ exports.up = async knex => knex.schema.createTable('users', table => {
 	table.text('name').notNullable()
 	table.text('email').unique().notNullable()
 	table.text('document').unique().notNullable()
-	table.json('enabledFeatures').notNullable()
-	table.json('metadatas')
-	table.text('address').notNullable()
+	table.text('birthDate').notNullable()
+	table.specificType('enabledFeatures', 'integer ARRAY').notNullable()
+	table.json('metadatas').notNullable()
+	table.json('address').notNullable()
 	table.integer('salaryBase').notNullable()
 
 	table.timestamp('created_at').defaultTo(knex.fn.now())
