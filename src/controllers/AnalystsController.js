@@ -1,4 +1,5 @@
-const knex = require("../database")
+const knex = require('../database')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
 	async index (req, res, next) {
@@ -53,10 +54,12 @@ module.exports = {
 		try {
 			const { user_id, email, password, roles	} = req.body
 
+			const hashPassword = await bcrypt.hash(password, 10)
+
 			await knex('analysts').insert({
 				user_id,
 				email,
-				password,
+				password: hashPassword,
 				roles
 			})
 
