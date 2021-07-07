@@ -1,4 +1,5 @@
 const express = require('express')
+const authMiddleware = require('./middlewares/auth')
 
 const UserController = require('./controllers/UserController')
 const AnalystsController = require('./controllers/AnalystsController')
@@ -7,6 +8,12 @@ const CardsController = require('./controllers/CardsController')
 const AuthController = require('./controllers/AuthController')
 
 const routes = express.Router()
+
+routes
+	.post('/api/authenticate', AuthController.create)
+	//Authentication
+
+routes.use(authMiddleware)
 
 routes
 	.get('/api/users', UserController.index)
@@ -29,9 +36,5 @@ routes
 	.post('/api/cards', CardsController.create)
 	.put('/api/cards/:id', CardsController.update)
 	//Cards
-
-routes
-	.post('/api/authenticate', AuthController.create)
-	//Authentication
 
 module.exports = routes

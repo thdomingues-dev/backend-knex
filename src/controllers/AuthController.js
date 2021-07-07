@@ -26,7 +26,7 @@ module.exports = {
 				expiresIn: 86400
 			})
 
-			return res.send({ user, token })
+			return res.send({ user, token, userId: req.id })
 		} catch (error) {
 			next(error)
 		}
