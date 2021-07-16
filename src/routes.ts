@@ -1,4 +1,5 @@
-const express = require('express')
+import { Router } from 'express'
+
 const authMiddleware = require('./middlewares/auth')
 
 const UserController = require('./controllers/UserController')
@@ -7,7 +8,7 @@ const AuditsController = require('./controllers/AuditsController')
 const CardsController = require('./controllers/CardsController')
 const AuthController = require('./controllers/AuthController')
 
-const routes = express.Router()
+const routes = Router()
 
 routes
 	.post('/api/authenticate', AuthController.create)
