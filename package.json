@@ -4,7 +4,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon src/server.js",
-		"dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
   },
   "author": "Thales Domingues <thdomingues.dev@gmail.com>",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "uuidv4": "^6.2.11"
   }
 }
