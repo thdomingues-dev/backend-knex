@@ -1,4 +1,5 @@
 import { Analyst } from "../../entities/Analyst";
+import { IMailProvider } from "../../providers/IMailProvider";
 import { IAnalystsRepository } from "../../repositories/IAnalystsRepository";
 import { ICreateAnalystRequestDTO } from "./CreateAnalystDTO";
 
@@ -6,7 +7,8 @@ import { ICreateAnalystRequestDTO } from "./CreateAnalystDTO";
 
 export class CreateAnalystUseCase {
 	constructor(
-		private analystsRepository: IAnalystsRepository //LSP - liskov substitution principle
+		private analystsRepository: IAnalystsRepository, //LSP - liskov substitution principle
+		private mailProvider: IMailProvider
 	) {}
 
 	async execute(data: ICreateAnalystRequestDTO) {
@@ -19,5 +21,18 @@ export class CreateAnalystUseCase {
 		const analyst = new Analyst(data)
 
 		await this.analystsRepository.save(analyst) // DIP - dependency inversion principle
+
+		await this.mailProvider.sendMail({
+			to: {
+				name: data.email,
+				email: data.email
+			},
+			from: {
+				name: 'Teste',
+				email: 'equipe@gmail.com'
+			},
+			subject: 'Welcome!',
+			body: '<span>Você já pode fazer login no nosso sistema</span>'
+		})
 	}
 }
