@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createAnalystController } from './useCases/CreateAnalyst'
+import { listAnalystController } from './useCases/ListAnalyst/'
 
 const authMiddleware = require('./middlewares/auth')
 
@@ -11,8 +12,10 @@ const AuthController = require('./controllers/AuthController')
 
 const routes = Router()
 
-routes.post('/api/analystss', (request, response) => createAnalystController.handle(request, response))
-	//TesteAnalyst
+routes
+	.get('/api/analystss', (request, response) => listAnalystController.handle(request, response))
+	.post('/api/analystss', (request, response) => createAnalystController.handle(request, response))
+	//TesteAnalystSOLID
 
 routes
 	.post('/api/authenticate', AuthController.create)
