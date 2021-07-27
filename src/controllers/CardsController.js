@@ -30,7 +30,7 @@ module.exports = {
 				status
 			} = req.body
 
-			await knex('cards').insert({
+			const cardResponse = await knex('cards').returning('*').insert({
 				user_id,
 				metadatas: {
 					name,
@@ -40,7 +40,7 @@ module.exports = {
 				status
 			})
 
-			return res.status(201).json({ response: 'card created'})
+			return res.status(201).json({ cardResponse})
 		} catch (error) {
 			next(error)
 		}
