@@ -1,7 +1,8 @@
-import { Router } from 'express'
+import { response, Router } from 'express'
 import { createAnalystController } from './useCases/Analyst/CreateAnalyst'
 import { listAnalystController } from './useCases/Analyst/ListAnalyst'
 import { createCardController } from './useCases/CreateCard'
+import { listAuditController } from './useCases/Audit/ListAudit'
 
 const authMiddleware = require('./middlewares/auth')
 
@@ -16,7 +17,10 @@ const routes = Router()
 routes
 	.get('/api/analystss', (request, response, next) => listAnalystController.handle(request, response, next))
 	.post('/api/analystss', (request, response) => createAnalystController.handle(request, response))
+
 	.post('/api/cardss', (request, response) => createCardController.handle(request, response))
+
+	.get('/api/auditss', (request, response, next) => listAuditController.handle(request, response, next))
 	//TesteAnalystSOLID
 
 routes
