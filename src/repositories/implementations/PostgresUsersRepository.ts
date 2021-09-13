@@ -14,7 +14,7 @@ export class PostgresUsersRepository implements IUsersRepository {
 	}
 
 	async save(user: User): Promise<User> {
-		return knex('users').insert({
+		return knex('users').returning('*').insert({
 			name: user.name,
 			email: user.email,
 			document: user.document,

@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { createAnalystController } from './useCases/Analyst/CreateAnalyst'
 import { listAnalystController } from './useCases/Analyst/ListAnalyst'
 import { createCardController } from './useCases/CreateCard'
+import { listCardController } from './useCases/Card/ListCard'
 import { listAuditController } from './useCases/Audit/ListAudit'
 import { createUserController } from './useCases/User/CreateUser'
 
@@ -19,6 +20,7 @@ routes
 	.get('/api/analystss', (request, response, next) => listAnalystController.handle(request, response, next))
 	.post('/api/analystss', (request, response) => createAnalystController.handle(request, response))
 
+	.get('/api/cardss', (request, response, next) => listCardController.handle(request, response, next))
 	.post('/api/cardss', (request, response) => createCardController.handle(request, response))
 
 	.get('/api/auditss', (request, response, next) => listAuditController.handle(request, response, next))
