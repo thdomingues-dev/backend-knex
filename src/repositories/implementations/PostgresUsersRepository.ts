@@ -10,11 +10,15 @@ export class PostgresUsersRepository implements IUsersRepository {
 	}
 
 	async findByEmail(email: string): Promise<User> {
-		return knex('users').where({ 'users.email': email })
+		return await knex('users').where({ 'users.email': email })
+	}
+
+	async findById(id: number): Promise<User> {
+		return await knex('users').where({ 'users.id': id })
 	}
 
 	async save(user: User): Promise<User> {
-		return knex('users').returning('*').insert({
+		return await knex('users').returning('*').insert({
 			name: user.name,
 			email: user.email,
 			document: user.document,
@@ -24,5 +28,9 @@ export class PostgresUsersRepository implements IUsersRepository {
 			address: user.address,
 			salaryBase: user.salaryBase
 		})
+	}
+
+	async delete(user: User): Promise<User> {
+		return await knex('users').where({ id: user.id }).del()
 	}
 }

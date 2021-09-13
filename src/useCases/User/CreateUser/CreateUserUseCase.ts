@@ -12,29 +12,25 @@ export class CreateUserUseCase {
 	async execute(data: ICreateUserRequestDTO): Promise<User> {
 		const hasUser = await this.usersRepository.findByEmail(data.email)
 
-		if (hasUser?.id) {
-			throw new Error('User already exists.')
-		}
+		if (Object.keys(hasUser).length === 0) {
+			const user = new User(data)
 
-		const user = new User(data)
+			await this.usersRepository.save(user)
 
-		const handleSaveUser = await this.usersRepository.save(user)
-
-		if (handleSaveUser) {
 			await this.mailProvider.sendMail({
-				to: {
-					name: data.email,
-					email: data.email
-				},
-				from: {
-					name: 'Teste',
-					email: 'equipe@gmail.com'
-				},
-				subject: 'Welcome!',
-				body: `<span>Usuário ${user.name} criado com sucesso.</span>`
-			})
+					to: {
+						name: data.email,
+						email: data.email
+					},
+					from: {
+						name: 'Teste',
+						email: 'equipe@gmail.com'
+					},
+					subject: 'Welcome!',
+					body: `<span>Usuário ${user.name} criado com sucesso.</span>`
+				})
 		}
 
-		return handleSaveUser
+		throw new Error('User already exists.')
 	}
 }
