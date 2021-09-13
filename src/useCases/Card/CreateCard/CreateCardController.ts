@@ -1,4 +1,4 @@
-import { Card } from "../../entities/Card";
+import { Card } from "../../../entities/Card";
 import { Request, response, Response } from 'express'
 import { CreateCardUseCase } from './CreateCardUseCase'
 

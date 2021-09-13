@@ -1,5 +1,5 @@
-import { Card } from "../../entities/Card";
-import { ICardsRepository } from "../../repositories/ICardsRepository";
+import { Card } from "../../../entities/Card";
+import { ICardsRepository } from "../../../repositories/ICardsRepository";
 import { ICreateCardRequestDTO } from "./CreateCardDTO";
 
 export class CreateCardUseCase {

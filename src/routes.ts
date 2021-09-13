@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { createAnalystController } from './useCases/Analyst/CreateAnalyst'
 import { listAnalystController } from './useCases/Analyst/ListAnalyst'
-import { createCardController } from './useCases/CreateCard'
+import { createCardController } from './useCases/Card/CreateCard'
 import { listCardController } from './useCases/Card/ListCard'
 import { listAuditController } from './useCases/Audit/ListAudit'
 import { createUserController } from './useCases/User/CreateUser'
