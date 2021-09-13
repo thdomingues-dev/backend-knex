@@ -1,10 +1,8 @@
 import { Router } from 'express'
-import { createAnalystController } from './useCases/Analyst/CreateAnalyst'
-import { listAnalystController } from './useCases/Analyst/ListAnalyst'
-import { createCardController } from './useCases/Card/CreateCard'
-import { listCardController } from './useCases/Card/ListCard'
-import { listAuditController } from './useCases/Audit/ListAudit'
-import { createUserController } from './useCases/User/CreateUser'
+import { listAnalystController, createAnalystController } from './useCases/Analyst'
+import { listCardController, createCardController } from './useCases/Card'
+import { listAuditController } from './useCases/Audit'
+import { listUserController, createUserController } from './useCases/User'
 
 const authMiddleware = require('./middlewares/auth')
 
@@ -17,6 +15,12 @@ const AuthController = require('./controllers/AuthController')
 const routes = Router()
 
 routes
+	.post('/api/authenticate', AuthController.create)
+	//Authentication
+
+routes.use(authMiddleware)
+
+routes
 	.get('/api/analystss', (request, response, next) => listAnalystController.handle(request, response, next))
 	.post('/api/analystss', (request, response) => createAnalystController.handle(request, response))
 
@@ -25,14 +29,9 @@ routes
 
 	.get('/api/auditss', (request, response, next) => listAuditController.handle(request, response, next))
 
+	.get('/api/userss', (request, response, next) => listUserController.handle(request, response, next))
 	.post('api/userss', (request, response, next) => createUserController.handle(request, response, next))
 	//TesteAnalystSOLID
-
-routes
-	.post('/api/authenticate', AuthController.create)
-	//Authentication
-
-routes.use(authMiddleware)
 
 routes
 	.get('/api/users', UserController.index)
