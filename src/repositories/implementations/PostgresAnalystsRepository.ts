@@ -1,14 +1,13 @@
 import { Analyst } from "../../entities/Analyst";
 import { IAnalystsRepository } from "../IAnalystsRepository";
 import knex from '../../database'
+const bcrypt = require('bcryptjs')
 
 export class PostgresAnalystsRepository implements IAnalystsRepository {
 	private analysts: Analyst[] = []
 
 	async findByEmail(email: string): Promise<Analyst> {
-		const analyst = this.analysts.find(analyst => analyst.email === email)
-
-		return analyst
+		return await knex('analysts').where({ 'analysts.email': email })
 	}
 
 	async findAllAnalysts(): Promise<Analyst[]> {
@@ -16,6 +15,13 @@ export class PostgresAnalystsRepository implements IAnalystsRepository {
 	}
 
 	async save(analyst: Analyst): Promise<void> {
-		this.analysts.push(analyst)
+		const hashPassword = await bcrypt.hash(analyst.password, 10)
+
+		return await knex('analysts').insert({
+			user_id: analyst.user_id,
+			email: analyst.email,
+			password: hashPassword,
+			roles: analyst.roles
+		})
 	}
 }

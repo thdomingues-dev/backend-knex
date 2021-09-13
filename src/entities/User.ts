@@ -20,4 +20,8 @@ export class User {
 	public created_at: string
 	public updated_at: string
 	public deleted_at: string | null
+
+	constructor(props: Omit<User, 'id'>) {
+		Object.assign(this, props)
+	}
 }

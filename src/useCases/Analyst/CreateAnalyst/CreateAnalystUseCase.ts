@@ -12,9 +12,9 @@ export class CreateAnalystUseCase {
 	) {}
 
 	async execute(data: ICreateAnalystRequestDTO) {
-		const analystAlreadyExists = await this.analystsRepository.findByEmail(data.email)
+		const hasAnalyst = await this.analystsRepository.findByEmail(data.email)
 
-		if (analystAlreadyExists) {
+		if (hasAnalyst?.id) {
 			throw new Error('Analyst already exists.')
 		}
 
