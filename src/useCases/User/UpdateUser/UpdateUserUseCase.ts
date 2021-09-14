@@ -3,7 +3,7 @@ import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
 export class UpdateUserUseCase {
 	constructor(
-		private userRepository: IUsersRepository,
+		private userRepository: IUsersRepository
 	) {}
 
 	async execute(data): Promise<User> {
