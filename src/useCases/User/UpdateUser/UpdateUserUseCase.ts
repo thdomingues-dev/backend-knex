@@ -1,15 +1,13 @@
 import { User } from "../../../entities/User";
-import { IMailProvider } from "../../../providers/IMailProvider";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
-export class DeleteUserUseCase {
+export class UpdateUserUseCase {
 	constructor(
-		private usersRepository: IUsersRepository,
-		private mailProvider: IMailProvider
+		private userRepository: IUsersRepository,
 	) {}
 
 	async execute(data): Promise<User> {
-		const hasUser = await this.usersRepository.findById(data?.id)
+		const hasUser = await this.userRepository.findById(data?.id)
 
 		if (Object.keys(hasUser).length === 0) {
 			throw new Error('User does not exists.')
@@ -17,6 +15,6 @@ export class DeleteUserUseCase {
 
 		const user = new User(data)
 
-		return await this.usersRepository.delete(user)
+		return await this.userRepository.update(user)
 	}
 }

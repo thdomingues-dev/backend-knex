@@ -33,4 +33,8 @@ export class PostgresUsersRepository implements IUsersRepository {
 	async delete(user: User): Promise<User> {
 		return await knex('users').where({ id: user.id }).del()
 	}
+
+	async update(payload: any): Promise<User> {
+		return await knex('users').update({ name: payload?.name }).where({ id: payload?.id })
+	}
 }

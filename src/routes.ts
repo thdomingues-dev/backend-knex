@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { listAnalystController, createAnalystController } from './useCases/Analyst'
 import { listCardController, createCardController } from './useCases/Card'
 import { listAuditController } from './useCases/Audit'
-import { listUserController, createUserController, deleteUserController } from './useCases/User'
+import { listUserController, createUserController, updateUserController, deleteUserController } from './useCases/User'
 
 const authMiddleware = require('./middlewares/auth')
 
@@ -31,6 +31,7 @@ routes
 
 	.get('/api/userss', (request, response, next) => listUserController.handle(request, response, next))
 	.post('/api/userss', (request, response, next) => createUserController.handle(request, response, next))
+	.put('/api/userss/:id', (request, response, next) => updateUserController.handle(request, response, next))
 	.delete('/api/userss/:id', (request, response, next) => deleteUserController.handle(request, response, next))
 	//TesteAnalystSOLID
 
