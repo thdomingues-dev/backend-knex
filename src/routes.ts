@@ -1,4 +1,5 @@
-import { Router } from 'express'
+const express = require('express')
+
 import { listAnalystController, createAnalystController } from './useCases/Analyst'
 import { listCardController, createCardController, updateCardController } from './useCases/Card'
 import { listAuditController } from './useCases/Audit'
@@ -12,7 +13,7 @@ const AuditsController = require('./controllers/AuditsController')
 const CardsController = require('./controllers/CardsController')
 const AuthController = require('./controllers/AuthController')
 
-const routes = Router()
+const routes = express.Router()
 
 routes
 	.post('/api/authenticate', AuthController.create)
