@@ -1,5 +1,5 @@
 // Update with your config settings.
-import { parse } from 'pg-connection-string'
+const parse = require("pg-connection-string").parse;
 
 // Parse the environment variable into an object containing User, Password, Host, Port etc at separate key-value pairs
 const pgconfig = parse(process.env.DATABASE_URL);
