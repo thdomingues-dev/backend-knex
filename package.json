@@ -4,7 +4,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.js"
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
   },
   "author": "Thales Domingues <thdomingues.dev@gmail.com>",
   "license": "MIT",
