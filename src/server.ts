@@ -1,10 +1,16 @@
+require("dotenv").config()
 const express = require('express')
 const cors = require('cors')
 const routes = require('./routes')
-
+let port = process.env.PORT
 const app = express()
+const isDev = process.env.NODE_ENV !== "production"
 
-app.use(cors())
+if (isDev) {
+	app.use(cors())
+	port = '3001'
+}
+
 app.use(express.json())
 app.use(routes)
 
@@ -21,4 +27,4 @@ app.use((error: any, _req: any, res: { status: (arg0: any) => void; json: (arg0:
 	res.json({ error: error.message})
 })
 
-app.listen(3001, () => console.log('Server is running'))
+app.listen(port, () => console.log('Server is running'))
