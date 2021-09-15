@@ -6,8 +6,6 @@ const pgconfig = parse(process.env.DATABASE_URL || '');
 
 // Add SSL setting to default environment variable on a new key-value pair (the value itself is an object)
 pgconfig.ssl = { rejectUnauthorized: false };
-pgconfig.host = '127.0.0.1'
-pgconfig.port = 5432
 
 module.exports = {
 
