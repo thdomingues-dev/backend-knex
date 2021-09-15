@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listUserController = exports.listUserUseCase = void 0;
+const PostgresUsersRepository_1 = require("../../../repositories/implementations/PostgresUsersRepository");
+const ListUserController_1 = require("./ListUserController");
+const ListUserUseCase_1 = require("./ListUserUseCase");
+const postgresUsersRepository = new PostgresUsersRepository_1.PostgresUsersRepository();
+const listUserUseCase = new ListUserUseCase_1.ListUserUseCase(postgresUsersRepository);
+exports.listUserUseCase = listUserUseCase;
+const listUserController = new ListUserController_1.ListUserController(listUserUseCase);
+exports.listUserController = listUserController;

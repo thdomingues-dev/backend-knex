@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createAnalystController = exports.createAnalystUseCase = void 0;
+const MailtrapMailProvider_1 = require("../../../providers/implementations/MailtrapMailProvider");
+const PostgresAnalystsRepository_1 = require("../../../repositories/implementations/PostgresAnalystsRepository");
+const CreateAnalystController_1 = require("./CreateAnalystController");
+const CreateAnalystUseCase_1 = require("./CreateAnalystUseCase");
+const mailtrapProvider = new MailtrapMailProvider_1.MailtrapMailProvider();
+const postgresAnalystsRepository = new PostgresAnalystsRepository_1.PostgresAnalystsRepository();
+const createAnalystUseCase = new CreateAnalystUseCase_1.CreateAnalystUseCase(postgresAnalystsRepository, mailtrapProvider);
+exports.createAnalystUseCase = createAnalystUseCase;
+const createAnalystController = new CreateAnalystController_1.CreateAnalystController(createAnalystUseCase);
+exports.createAnalystController = createAnalystController;

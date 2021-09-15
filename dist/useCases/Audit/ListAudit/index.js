@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listAuditController = exports.listAuditUseCase = void 0;
+const PostgresAuditsRepository_1 = require("../../../repositories/implementations/PostgresAuditsRepository");
+const ListAuditController_1 = require("./ListAuditController");
+const ListAnalystUseCase_1 = require("./ListAnalystUseCase");
+const postgresAuditsRepository = new PostgresAuditsRepository_1.PostgresAuditsRepository();
+const listAuditUseCase = new ListAnalystUseCase_1.ListAuditsUseCase(postgresAuditsRepository);
+exports.listAuditUseCase = listAuditUseCase;
+const listAuditController = new ListAuditController_1.ListAuditController(listAuditUseCase);
+exports.listAuditController = listAuditController;

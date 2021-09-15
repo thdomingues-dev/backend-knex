@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createCardController = exports.createCardUseCase = void 0;
+const PostgresCardsRepository_1 = require("../../../repositories/implementations/PostgresCardsRepository");
+const CreateCardController_1 = require("./CreateCardController");
+const CreateCardUseCase_1 = require("./CreateCardUseCase");
+const postgresCardsRepository = new PostgresCardsRepository_1.PostgresCardsRepository();
+const createCardUseCase = new CreateCardUseCase_1.CreateCardUseCase(postgresCardsRepository);
+exports.createCardUseCase = createCardUseCase;
+const createCardController = new CreateCardController_1.CreateCardController(createCardUseCase);
+exports.createCardController = createCardController;
