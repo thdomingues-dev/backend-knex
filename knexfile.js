@@ -1,4 +1,9 @@
 // Update with your config settings.
+const knex = require("knex");
+const parse = require("pg-connection-string").parse;
+
+// Parse the environment variable into an object containing User, Password, Host, Port etc at separate key-value pairs
+const pgconfig = parse(process.env.DATABASE_URL);
 
 module.exports = {
 
@@ -42,7 +47,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-		connection: process.env.DATABASE_URL,
+		connection: pgconfig,
 		migrations: {
 			tableName: 'knex_migrations',
 			directory: `${__dirname}/src/database/migrations`
