@@ -16,7 +16,7 @@ app.use(routes)
 
 //not found
 app.use((_req,_res, next) => {
-	const error: any = new Error('Not Found')
+	const error = new Error('Not Found')
 	error.status = 404
 	next(error)
 })
