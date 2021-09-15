@@ -49,15 +49,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-		connection: {
-			host: 'ec2-44-198-146-224.compute-1.amazonaws.com',
-			database: 'de2ka2s6phcj7q',
-			user: 'zozbrmphfnahzd',
-			port: '5432',
-			password: 'b5e1b53aa94c5379fc00e430c718d347723ccf1cf64a7e145c5d72a474ff5d10',
-			uri: 'postgres://zozbrmphfnahzd:b5e1b53aa94c5379fc00e430c718d347723ccf1cf64a7e145c5d72a474ff5d10@ec2-44-198-146-224.compute-1.amazonaws.com:5432/de2ka2s6phcj7q',
-			ssl: { rejectUnauthorized: false }
-		},
+		connection: process.env.DATABASE_URL,
 		migrations: {
 			tableName: 'knex_migrations',
 			directory: `${__dirname}/src/database/migrations`
