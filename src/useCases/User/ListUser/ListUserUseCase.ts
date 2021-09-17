@@ -6,7 +6,10 @@ export class ListUserUseCase {
 		private userRepository: IUsersRepository
 	) {}
 
-	async execute(): Promise<User[]> {
-		return await this.userRepository.findAllUsers()
+	async execute(data): Promise<{users: User[], totalCount: number}> {
+		const totalCount = await this.userRepository.totalCount()
+		const users = await this.userRepository.findAllUsers(data)
+
+		return { users, totalCount }
 	}
 }

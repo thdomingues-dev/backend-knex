@@ -7,12 +7,9 @@ exports.seed = function(knex) {
       return knex('cards').insert([
         {
 					user_id: 1,
-					metadatas: {
-						name: "Thales Domingues",
-						digits: 1231233213,
-						limit: 500000
-					},
-					status: 'pending'
+					name: "Thales Domingues",
+					limit: 500000,
+					status: 'new_card'
 				}
       ]);
     });

@@ -1,3 +1,4 @@
 import { listAuditController } from "./ListAudit";
+import { createAuditController } from "./CreateAudit";
 
-export { listAuditController }
+export { listAuditController, createAuditController }

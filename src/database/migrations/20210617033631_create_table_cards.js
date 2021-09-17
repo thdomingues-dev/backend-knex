@@ -3,8 +3,11 @@ const { onUpdateTrigger } = require('../../../knexfile')
 exports.up = knex => knex.schema.createTable('cards', table => {
 	table.increments('id')
 	table.integer('user_id').references('users.id').notNullable().onDelete('CASCADE')
-	table.json('metadatas').notNullable()
+	//table.json('metadatas').notNullable()
 	table.text('status').notNullable()
+	table.increments('digits', { primaryKey: false }).unique()
+	table.bigInteger('limit').notNullable()
+	table.text('name').notNullable()
 
 	table.timestamps(true, true)
 }).then(() => knex.raw(onUpdateTrigger('cards')))

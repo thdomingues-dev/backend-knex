@@ -1,6 +1,7 @@
 export class Audit {
 	public readonly id: number
 
+	public analyst_id: number
 	public type: string
 	public before: {
 		status: string

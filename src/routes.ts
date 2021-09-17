@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { listAnalystController, createAnalystController } from './useCases/Analyst'
 import { listCardController, createCardController, updateCardController } from './useCases/Card'
-import { listAuditController } from './useCases/Audit'
+import { listAuditController, createAuditController } from './useCases/Audit'
 import { listUserController, createUserController, updateUserController, deleteUserController } from './useCases/User'
 
 const authMiddleware = require('./middlewares/auth')
@@ -41,6 +41,7 @@ routes
 //Audits
 routes
 	.get('/api/audits', (request, response, next) => listAuditController.handle(request, response, next))
+	.post('/api/audits', (request, response, next) => createAuditController.handle(request, response, next))
 	//.get('/api/audits', AuditsController.index)
 
 //Cards

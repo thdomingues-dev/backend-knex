@@ -15,20 +15,20 @@ export class CreateUserUseCase {
 		if (Object.keys(hasUser).length === 0) {
 			const user = new User(data)
 
-			await this.usersRepository.save(user)
-
 			await this.mailProvider.sendMail({
-					to: {
-						name: data.email,
-						email: data.email
-					},
-					from: {
-						name: 'Teste',
-						email: 'equipe@gmail.com'
-					},
-					subject: 'Welcome!',
-					body: `<span>Usuário ${user.name} criado com sucesso.</span>`
-				})
+				to: {
+					name: data.email,
+					email: data.email
+				},
+				from: {
+					name: 'Teste',
+					email: 'equipe@gmail.com'
+				},
+				subject: 'Welcome!',
+				body: `<span>Usuário ${user.name} criado com sucesso.</span>`
+			})
+
+			return await this.usersRepository.save(user)
 		}
 
 		throw new Error('User already exists.')

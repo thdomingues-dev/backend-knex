@@ -5,8 +5,8 @@ import knex from "../../database";
 export class PostgresUsersRepository implements IUsersRepository {
 	private users: User[] = []
 
-	async findAllUsers(): Promise<User[]> {
-		return await knex('users')
+	async findAllUsers({ page = 1 }): Promise<User[]> {
+		return await knex('users').limit(10).offset((page - 1) * 10)
 	}
 
 	async findByEmail(email: string): Promise<User> {
@@ -28,6 +28,12 @@ export class PostgresUsersRepository implements IUsersRepository {
 			address: user.address,
 			salaryBase: user.salaryBase
 		})
+	}
+
+	async totalCount(): Promise<number> {
+		const [response]  = await knex('users').count()
+
+		return response?.count
 	}
 
 	async delete(user: User): Promise<User> {

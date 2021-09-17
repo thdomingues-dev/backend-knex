@@ -7,11 +7,15 @@ export class ListUserController {
 		private listUserUseCase: ListUserUseCase
 	) {}
 
-	async handle(_request: Request, response: Response, next: NextFunction): Promise<Response> {
-		try {
-			const users: User[] = await this.listUserUseCase.execute()
+	async handle(request: Request, response: Response, next: NextFunction): Promise<Response> {
+		const { page = 1 } = request.query
 
-			return response.status(201).send(users)
+		try {
+			const handleListUserUseCase = await this.listUserUseCase.execute({ page })
+
+			response.header('X-Total-Count', handleListUserUseCase.totalCount.toString())
+
+			return response.status(201).send(handleListUserUseCase.users)
 		} catch (error) {
 			next(error)
 			return response.status(400).json({ message: error?.message })
