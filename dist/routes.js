@@ -34,7 +34,8 @@ routes
 //.post('/api/analysts', AnalystsController.create)
 //Audits
 routes
-    .get('/api/audits', (request, response, next) => Audit_1.listAuditController.handle(request, response, next));
+    .get('/api/audits', (request, response, next) => Audit_1.listAuditController.handle(request, response, next))
+    .post('/api/audits', (request, response, next) => Audit_1.createAuditController.handle(request, response, next));
 //.get('/api/audits', AuditsController.index)
 //Cards
 routes

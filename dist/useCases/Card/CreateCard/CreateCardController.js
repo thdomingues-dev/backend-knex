@@ -6,9 +6,9 @@ class CreateCardController {
         this.createCardUseCase = createCardUseCase;
     }
     async handle(request, response) {
-        const { user_id, metadatas, status, created_at, updated_at } = request.body;
+        const { user_id, name, limit, status, created_at, updated_at } = request.body;
         try {
-            const card = await this.createCardUseCase.execute({ user_id, metadatas, status, created_at, updated_at });
+            const card = await this.createCardUseCase.execute({ user_id, name, limit, status, created_at, updated_at });
             return response.status(201).send(card);
         }
         catch (error) {

@@ -9,8 +9,8 @@ class PostgresUsersRepository {
     constructor() {
         this.users = [];
     }
-    async findAllUsers() {
-        return await (0, database_1.default)('users');
+    async findAllUsers({ page = 1 }) {
+        return await (0, database_1.default)('users').limit(10).offset((page - 1) * 10);
     }
     async findByEmail(email) {
         return await (0, database_1.default)('users').where({ 'users.email': email });
@@ -29,6 +29,10 @@ class PostgresUsersRepository {
             address: user.address,
             salaryBase: user.salaryBase
         });
+    }
+    async totalCount() {
+        const [response] = await (0, database_1.default)('users').count();
+        return response === null || response === void 0 ? void 0 : response.count;
     }
     async delete(user) {
         return await (0, database_1.default)('users').where({ id: user.id }).del();

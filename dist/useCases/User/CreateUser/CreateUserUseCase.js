@@ -11,7 +11,6 @@ class CreateUserUseCase {
         const hasUser = await this.usersRepository.findByEmail(data.email);
         if (Object.keys(hasUser).length === 0) {
             const user = new User_1.User(data);
-            await this.usersRepository.save(user);
             await this.mailProvider.sendMail({
                 to: {
                     name: data.email,
@@ -24,6 +23,7 @@ class CreateUserUseCase {
                 subject: 'Welcome!',
                 body: `<span>Usuário ${user.name} criado com sucesso.</span>`
             });
+            return await this.usersRepository.save(user);
         }
         throw new Error('User already exists.');
     }

@@ -5,10 +5,12 @@ class ListUserController {
     constructor(listUserUseCase) {
         this.listUserUseCase = listUserUseCase;
     }
-    async handle(_request, response, next) {
+    async handle(request, response, next) {
+        const { page = 1 } = request.query;
         try {
-            const users = await this.listUserUseCase.execute();
-            return response.status(201).send(users);
+            const handleListUserUseCase = await this.listUserUseCase.execute({ page });
+            response.header('X-Total-Count', handleListUserUseCase.totalCount.toString());
+            return response.status(201).send(handleListUserUseCase.users);
         }
         catch (error) {
             next(error);
