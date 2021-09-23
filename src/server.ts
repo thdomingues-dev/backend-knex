@@ -1,16 +1,12 @@
 require("dotenv").config()
-const express = require('express')
-const cors = require('cors')
-const routes = require('./routes.ts')
-let port = process.env.PORT
+
+import express from 'express'
+import cors from 'cors'
+import routes from './routes'
+
 const app = express()
-const isDev = process.env.NODE_ENV !== "production"
 
-if (isDev) {
-	app.use(cors())
-	port = '3001'
-}
-
+app.use(cors())
 app.use(express.json())
 app.use(routes)
 
