@@ -53,4 +53,4 @@ routes
 	//.post('/api/cards', CardsController.create)
 	//.put('/api/cards/:id', CardsController.update)
 
-module.exports = routes
+export default routes
