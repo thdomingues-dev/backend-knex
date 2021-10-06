@@ -8,7 +8,7 @@ class ListAuditController {
     async handle(_request, response, next) {
         try {
             const audits = await this.listAuditUseCase.execute();
-            return response.status(201).send(audits);
+            return response.status(200).send(audits);
         }
         catch (error) {
             next(error);

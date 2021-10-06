@@ -1,15 +1,16 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
-const express = require('express');
-const cors = require('cors');
-const routes = require('./routes');
-let port = process.env.PORT;
-const app = express();
-
-app.use(cors());
-port = '3001';
-
-app.use(express.json());
-app.use(routes);
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const routes_1 = __importDefault(require("./routes"));
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.use(routes_1.default);
 //not found
 app.use((_req, _res, next) => {
     const error = new Error('Not Found');

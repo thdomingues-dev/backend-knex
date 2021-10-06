@@ -7,9 +7,6 @@ exports.PostgresAnalystsRepository = void 0;
 const database_1 = __importDefault(require("../../database"));
 const bcrypt = require('bcryptjs');
 class PostgresAnalystsRepository {
-    constructor() {
-        this.analysts = [];
-    }
     async findByEmail(email) {
         return await (0, database_1.default)('analysts').where({ 'analysts.email': email });
     }

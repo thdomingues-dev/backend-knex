@@ -29,7 +29,7 @@ routes
 //Analysts
 routes
     .get('/api/analysts', (request, response, next) => Analyst_1.listAnalystController.handle(request, response, next))
-    .post('/api/analysts', (request, response) => Analyst_1.createAnalystController.handle(request, response));
+    .post('/api/analysts', (request, response, next) => Analyst_1.createAnalystController.handle(request, response, next));
 //.get('/api/analysts', AnalystsController.index)
 //.post('/api/analysts', AnalystsController.create)
 //Audits
@@ -45,4 +45,4 @@ routes
 //.get('/api/cards', CardsController.index)
 //.post('/api/cards', CardsController.create)
 //.put('/api/cards/:id', CardsController.update)
-module.exports = routes;
+exports.default = routes;

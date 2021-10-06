@@ -10,7 +10,7 @@ class ListUserController {
         try {
             const handleListUserUseCase = await this.listUserUseCase.execute({ page });
             response.header('X-Total-Count', handleListUserUseCase.totalCount.toString());
-            return response.status(201).send(handleListUserUseCase.users);
+            return response.status(200).send(handleListUserUseCase.users);
         }
         catch (error) {
             next(error);

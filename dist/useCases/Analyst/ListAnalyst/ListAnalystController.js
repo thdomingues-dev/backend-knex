@@ -8,7 +8,7 @@ class ListAnalystController {
     async handle(_request, response, next) {
         try {
             const analysts = await this.listAnalystUseCase.execute();
-            return response.status(201).send(analysts);
+            return response.status(200).send(analysts);
         }
         catch (error) {
             next(error);
