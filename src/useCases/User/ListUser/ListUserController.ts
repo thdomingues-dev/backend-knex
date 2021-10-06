@@ -15,7 +15,7 @@ export class ListUserController {
 
 			response.header('X-Total-Count', handleListUserUseCase.totalCount.toString())
 
-			return response.status(201).send(handleListUserUseCase.users)
+			return response.status(200).send(handleListUserUseCase.users)
 		} catch (error) {
 			next(error)
 			return response.status(400).json({ message: error?.message })

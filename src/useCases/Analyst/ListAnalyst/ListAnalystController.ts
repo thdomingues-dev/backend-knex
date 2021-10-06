@@ -11,7 +11,7 @@ export class ListAnalystController {
 		try {
 			const analysts: Analyst[] = await this.listAnalystUseCase.execute()
 
-			return response.status(201).send(analysts)
+			return response.status(200).send(analysts)
 		} catch (error) {
 			next(error)
 			return response.status(400).json({ message: error?.message })

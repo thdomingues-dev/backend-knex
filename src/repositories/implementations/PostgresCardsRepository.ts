@@ -3,8 +3,6 @@ import { ICardsRepository } from "../ICardsRepository";
 import knex from "../../database";
 
 export class PostgresCardsRepository implements ICardsRepository {
-	private card: Card
-
 	async findAllCards(): Promise<Card[]> {
 		return await knex('cards')
 	}
@@ -25,5 +23,12 @@ export class PostgresCardsRepository implements ICardsRepository {
 
 	async save(card: Card): Promise<Card> {
 		return await knex('cards').returning('*').insert(card)
+	}
+
+	async exists (id: number): Promise<boolean> {
+		const result = await this.findById(id)
+		if (result.length !== 0 && result[0].id === id) return true
+
+		return false
 	}
 }

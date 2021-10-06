@@ -7,7 +7,7 @@ export class CreateUserController {
 		private createUserUseCase: CreateUserUseCase
 	) {}
 
-	async handle(request: Request, response: Response, next: NextFunction): Promise<Response> {
+	async handle(request: Request, response: Response, next: NextFunction): Promise<any> {
 		const { name, email, document, birthDate, enabledFeatures, metadatas, address, salaryBase, created_at, updated_at, deleted_at } = request.body
 
 		try {

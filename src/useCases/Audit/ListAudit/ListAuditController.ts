@@ -11,7 +11,7 @@ export class ListAuditController {
 		try {
 			const audits: Audit[] = await this.listAuditUseCase.execute()
 
-			return response.status(201).send(audits)
+			return response.status(200).send(audits)
 		} catch (error) {
 			next(error)
 			return response.status(400).json({ message: error?.message })

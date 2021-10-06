@@ -34,7 +34,7 @@ routes
 //Analysts
 routes
 	.get('/api/analysts', (request, response, next) => listAnalystController.handle(request, response, next))
-	.post('/api/analysts', (request, response) => createAnalystController.handle(request, response))
+	.post('/api/analysts', (request, response, next) => createAnalystController.handle(request, response, next))
 	//.get('/api/analysts', AnalystsController.index)
 	//.post('/api/analysts', AnalystsController.create)
 

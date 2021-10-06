@@ -4,8 +4,6 @@ import knex from '../../database'
 const bcrypt = require('bcryptjs')
 
 export class PostgresAnalystsRepository implements IAnalystsRepository {
-	private analysts: Analyst[] = []
-
 	async findByEmail(email: string): Promise<Analyst> {
 		return await knex('analysts').where({ 'analysts.email': email })
 	}

@@ -5,4 +5,5 @@ export interface ICardsRepository {
 	findById(id: number): Promise<Card[]>
 	update(payload: any): Promise<Card>
 	save(card: Card): Promise<Card>
+	exists(id: number): Promise<boolean>
 }
