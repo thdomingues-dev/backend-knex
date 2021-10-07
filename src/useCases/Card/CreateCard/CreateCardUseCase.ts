@@ -9,7 +9,7 @@ export class CreateCardUseCase {
 
 	async execute(data: ICreateCardRequestDTO): Promise<Card> {
 		const { user_id, name, limit, created_at, updated_at } = data
-		const card = new Card({ status: 'new_card', user_id, name, limit, updated_at, created_at })
+		const card = new Card({ status: 'requested', user_id, name, limit, updated_at, created_at })
 
 		return await this.cardsRepository.save(card)
 	}
