@@ -13,8 +13,8 @@ class PostgresCardsRepository {
         return await (0, database_1.default)('cards').where({ 'cards.id': id });
     }
     async update(payload) {
-        if (payload === null || payload === void 0 ? void 0 : payload.metadatas) {
-            return await (0, database_1.default)('cards').update({ metadatas: payload === null || payload === void 0 ? void 0 : payload.metadatas }).where({ id: payload === null || payload === void 0 ? void 0 : payload.id });
+        if (payload === null || payload === void 0 ? void 0 : payload.name) {
+            return await (0, database_1.default)('cards').update({ name: payload === null || payload === void 0 ? void 0 : payload.name }).where({ id: payload === null || payload === void 0 ? void 0 : payload.id });
         }
         if (payload === null || payload === void 0 ? void 0 : payload.status) {
             return await (0, database_1.default)('cards').update({ status: payload === null || payload === void 0 ? void 0 : payload.status }).where({ id: payload === null || payload === void 0 ? void 0 : payload.id });

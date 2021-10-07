@@ -7,11 +7,11 @@ class UpdateCardController {
     }
     async handle(request, response, next) {
         const { id } = request.params;
-        const { metadatas, status } = request.body;
+        const { name, status } = request.body;
         try {
-            metadatas ? await this.updateCardUseCase.execute({ id, metadatas }) : null;
+            name ? await this.updateCardUseCase.execute({ id, name }) : null;
             status ? await this.updateCardUseCase.execute({ id, status }) : null;
-            if (metadatas || status)
+            if (name || status)
                 return response.status(200).send({ message: 'card has been updated.' });
             return response.status(400).json({ message: "bad request, try again" });
         }

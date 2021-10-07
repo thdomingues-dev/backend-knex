@@ -12,8 +12,8 @@ export class PostgresCardsRepository implements ICardsRepository {
 	}
 
 	async update(payload: any): Promise<Card> {
-		if (payload?.metadatas) {
-			return await knex('cards').update({ metadatas: payload?.metadatas }).where({ id: payload?.id })
+		if (payload?.name) {
+			return await knex('cards').update({ name: payload?.name }).where({ id: payload?.id })
 		}
 
 		if (payload?.status) {
